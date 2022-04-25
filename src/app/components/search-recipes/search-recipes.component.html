@@ -1,0 +1,88 @@
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br /><br />
+        <h1 class="header center orange-text">Search Recipes</h1>
+        <div class="row center">
+            <h6 class="header col s12 light">
+                Type in the recipe you want to search for and select from the results.
+            </h6>
+        </div>
+
+    </div>
+</div>
+
+<div class="row center search-box">
+    <form>
+        <input #searchTerm placeholder="Mango Shrimp"> <button id="search-button" (click)="search(searchTerm.value)"
+            class="waves-effect waves-light btn orange">Search</button></form>
+</div>
+<br /><br />
+
+<div *ngIf="loading===true">
+    <div class="progress orange container">
+        <div class="indeterminate blue"></div>
+    </div>
+</div>
+
+
+<div *ngIf="data.length > 0">
+    <blockquote>
+        Click on the recipe image to show the ingredient list
+    </blockquote>
+    <div class="">
+        <div class="">
+            <div class="search-results grid-container">
+                <div *ngFor="let item of data; index as i" class="grid-item">
+                    <div class="col s12 m4">
+                        <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="{{item.recipe.image}}" />
+                            </div>
+                            <div class="card-content">
+
+                                <span class="card-title grey-text text-darken-4">{{item.recipe.label}}<i
+                                        class="material-icons right">add_circle</i></span>
+                                <p>Total Calories: {{item.recipe.calories.toFixed(0)}}</p>
+                                <p>Source: <a href="{{item.recipe.url}}">{{item.recipe.source}}</a></p>
+                                <button attr.data-target="modal{{i+1}}" class="btn-flat modal-trigger">Nutrition
+                                    Analysis</button>
+
+
+                                <!-- Modal Structure -->
+                                <div id="modal{{i+1}}" class="modal">
+                                    <div class="modal-content">
+                                        <h4>Modal Header</h4>
+                                        <div class="inner1"></div>
+                                        <div class="legend"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="modal-close waves-effect waves-green btn-flat">Close</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">Yield: {{item.recipe.yield}}
+                                    Servings</span>
+
+                                <span class="card-title grey-text text-darken-4">Ingredient List<i
+                                        class="material-icons right">close</i></span>
+                                <ul class="collection">
+
+
+                                    <li *ngFor="let ingredientItem of item.recipe.ingredientLines"
+                                        class="collection-item">{{ingredientItem}}</li>
+
+                                </ul>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

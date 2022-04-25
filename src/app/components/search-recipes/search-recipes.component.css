@@ -1,0 +1,29 @@
+.search-wrapper{color: #777;
+    margin-top: -1px;
+display:flex;
+    -webkit-transition: margin .25s ease;
+    transition: margin .25s ease;}
+
+
+    .search-box, form{
+        margin: 0px auto;
+        width: 70%;
+        display:flex;
+    
+    }
+
+ #search-button {
+    align-self: center;
+    margin-left: 15px;
+}
+
+.grid-item{
+    margin-right:50px;
+}
+ 
+
+.search-results{
+    display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding:0px 60px;
+}
