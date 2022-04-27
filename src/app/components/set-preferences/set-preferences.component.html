@@ -1,1 +1,118 @@
-<h3>Set Preferences</h3>
+<div class="container form1" id="form-fade">
+    <h1 class="header center orange-text">Set your dietary preferences</h1>
+
+
+    <form class="col s12 margin-little" #f="ngForm" (ngSubmit)="onSubmit(f)" validate>
+        <div class="row">
+            <div class="col s12">
+                Set your daily calorie limit/target:
+                <div class="input-field inline">
+                    <input id="calories" type="text" name="calories" ngModel required #calories="ngModel">
+                    <span class="helper-text" data-success="right">Daily Calorie limit/target</span>
+                </div>
+            </div>
+        </div>
+        <p class="left-align">Set your macronutrient targets/limits</p>
+        <div class="row">
+
+            <div class="diet">
+                <p class="macros">
+                    <label>
+                        <input type="checkbox" id="carbsMacroInd" name="carbsMacroInd" ngModel required
+                            #carbsMacroInd="ngModel" />
+                        <span>Carbs</span>
+                        <input type="text" id="carbsMacroAmount" name="carbsMacroAmount" ngModel required
+                            #carbsMacroAmount="ngModel">
+                        <label class="label_carbsMacro" for="carbsMacroAmount">Daily Target/Limit (grams)</label>
+                    </label>
+
+                </p>
+
+                <p class="macros">
+                    <label>
+                        <input type="checkbox" id="fatMacroInd" name="fatMacroInd" ngModel required
+                            #fatMacroInd="ngModel" />
+                        <span>Fat</span>
+                        <input type="text" id="fatMacroAmount" name="fatMacroAmount" ngModel required
+                            #fatMacroAmount="ngModel">
+                        <label class="label_fatMacro" for="fatMacroAmount">Daily Target/Limit (grams)</label>
+                    </label>
+
+                </p>
+
+                <p class="macros">
+                    <label>
+                        <input type="checkbox" id="proteinMacroInd" name="proteinMacroInd" ngModel required
+                            #proteinMacroInd="ngModel" />
+                        <span>Protein</span>
+                        <input type="text" id="proteinMacroAmount" name="proteinMacroAmount" ngModel required
+                            #proteinMacroAmount="ngModel">
+                        <label class="label_proteinMacro" for="proteinMacroAmount">Daily Target/Limit (grams)</label>
+                    </label>
+
+                </p>
+
+                <p class="macros">
+                    <label>
+                        <input type="checkbox" id="sugarMacroInd" name="sugarMacroInd" ngModel required
+                            #sugarMacroInd="ngModel" />
+                        <span>Sugar</span>
+                        <input type="text" id="sugarMacroAmount" name="sugarMacroAmount" ngModel required
+                            #sugarMacroAmount="ngModel">
+                        <label class="label_sugarMacro" for="sugarMacroAmount">Daily Target/Limit (grams)</label>
+                    </label>
+
+                </p>
+            </div>
+        </div>
+
+
+        <p class="left-align">Select your diet style</p>
+        <div class="row">
+
+            <div class="radio-diet">
+
+                <p>
+                    <label>
+                        <input type="radio" ng-model="dietInd" value="vegan" name="dietInd" ngModel>
+                        <span>Vegan</span>
+
+                    </label>
+
+                </p>
+                <p>
+                    <label>
+                        <input type="radio" ng-model="dietInd" value="keto-friendly" name="dietInd" ngModel>
+                        <span>Keto</span>
+
+                    </label>
+
+                </p>
+                <p>
+                    <label>
+                        <input type="radio" ng-model="dietInd" value="paleo" name="dietInd" ngModel>
+                        <span>Paleo</span>
+
+                    </label>
+
+                </p>
+                <p>
+                    <label>
+                        <input type="radio" ng-model="dietInd" value="gluten-free" name="dietInd" ngModel>
+                        <span>Gluten-Free</span>
+
+                    </label>
+
+                </p>
+            </div>
+        </div>
+        <button class="btn block waves-effect waves-light center-align light-blue" type="submit" #action>Set Preferences
+        </button>
+    </form>
+    <!-- <form #f=" ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+            <input name="first" ngModel required #first="ngModel">
+            <input name="last" ngModel #last="ngModel">
+            <button>Submit</button>
+    </form> -->
+
+</div>

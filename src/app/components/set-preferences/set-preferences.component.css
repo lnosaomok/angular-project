@@ -1,0 +1,36 @@
+.diet{
+    display:flex;
+    margin-left: 1rem;
+    justify-content: space-around
+}
+
+#form-fade{
+    padding: 5rem;
+}
+
+button{
+    border-radius:50px
+}
+.macros{
+    margin-right:3rem;
+}
+
+.radio-diet {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-left:1rem;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+#sugarMacroAmount, #fatMacroAmount, #carbsMacroAmount, #proteinMacroAmount{
+    display: none;
+}
+
+.label_carbsMacro, .label_fatMacro, .label_proteinMacro, .label_sugarMacro{
+    display: none;
+}

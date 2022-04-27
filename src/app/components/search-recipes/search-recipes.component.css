@@ -12,18 +12,38 @@ display:flex;
     
     }
 
+    .btn-flat{
+        padding:0
+    }
+
+.results-outer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+.right{
+    cursor: pointer;
+}    
+
  #search-button {
     align-self: center;
     margin-left: 15px;
+    border-radius:20px;
 }
 
+.card {
+    width: 350px
+}
 .grid-item{
     margin-right:50px;
 }
  
 
 .search-results{
-    display: grid;
-  grid-template-columns: auto auto auto auto;
-  padding:0px 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    margin: 0px auto
 }

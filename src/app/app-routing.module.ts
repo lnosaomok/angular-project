@@ -10,10 +10,11 @@ import { SearchRecipesComponent } from
 
 import { SetPreferencesComponent } from
   './components/set-preferences/set-preferences.component';
-
+console.log(localStorage['isPrefSet'])
+let intialComponent = localStorage['isPrefSet'] === "true" ? SearchRecipesComponent : SetPreferencesComponent
 const routes: Routes = [
-  { path: '', component: SearchRecipesComponent },
-  { path: 'saved', component: SavedRecipesComponent },
+  { path: 'home', component: intialComponent },
+  { path: '', component: SavedRecipesComponent },
   { path: 'preferences', component: SetPreferencesComponent },
 
 ];

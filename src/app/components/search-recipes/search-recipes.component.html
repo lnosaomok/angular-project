@@ -25,30 +25,32 @@
 </div>
 
 
-<div *ngIf="data.length > 0">
+<div class="results-outer" *ngIf="data.length > 0">
     <blockquote>
         Click on the recipe image to show the ingredient list
     </blockquote>
     <div class="">
         <div class="">
+
             <div class="search-results grid-container">
+
                 <div *ngFor="let item of data; index as i" class="grid-item">
                     <div class="col s12 m4">
                         <div class="card">
                             <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="{{item.recipe.image}}" />
+                                <img class="activator" src="{{item.image}}" />
                             </div>
                             <div class="card-content">
 
-                                <span class="card-title grey-text text-darken-4">{{item.recipe.label}}<i
-                                        class="material-icons right">add_circle</i></span>
-                                <p>Total Calories: {{item.recipe.calories.toFixed(0)}}</p>
-                                <p>Source: <a href="{{item.recipe.url}}">{{item.recipe.source}}</a></p>
+                                <span class="card-title grey-text text-darken-4" id="save-recipe">{{item.label}}<i
+                                        class="material-icons right" (click)="saveRecipe(item,$event);
+                                        ">add_circle</i></span>
+                                <p>Total Calories: {{item.calories}}</p>
+                                <p>Source: <a href="{{item.url}}">{{item.source}}</a></p>
                                 <button attr.data-target="modal{{i+1}}" class="btn-flat modal-trigger">Nutrition
                                     Analysis</button>
 
 
-                                <!-- Modal Structure -->
                                 <div id="modal{{i+1}}" class="modal">
                                     <div class="modal-content">
                                         <h4>Modal Header</h4>
@@ -63,7 +65,7 @@
 
                             </div>
                             <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">Yield: {{item.recipe.yield}}
+                                <span class="card-title grey-text text-darken-4">Yield: {{item.yield}}
                                     Servings</span>
 
                                 <span class="card-title grey-text text-darken-4">Ingredient List<i
@@ -71,8 +73,9 @@
                                 <ul class="collection">
 
 
-                                    <li *ngFor="let ingredientItem of item.recipe.ingredientLines"
-                                        class="collection-item">{{ingredientItem}}</li>
+                                    <li *ngFor="let ingredientItem of item.ingredientLines" class="collection-item">
+
+                                        {{ingredientItem}}</li>
 
                                 </ul>
 
@@ -86,3 +89,4 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">console.log("kjhgf")</script>
