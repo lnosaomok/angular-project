@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 //import { Contact } from '../../model/contact';
 //import { RecipeService } from
@@ -10,19 +11,33 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./saved-recipes.component.css']
 })
 export class SavedRecipesComponent implements OnInit {
+    id: any;
+    sub: any;
+    isDesktop: boolean = window.innerWidth >= 1200;
+    savedRecipes: any;
 
-    recipes: any;
 
-    constructor() { }
+    constructor(private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
-        //	this.friends = this.provider.getFriends();
-        //this.recipes = this.provider.getRecipes("fried rice")
-        //console.log(this.recipes)
+
+        this.savedRecipes = JSON.parse(localStorage['saved']).filter((item: any, index: number) => {
+            if (!item.sample) {
+                return item
+            }
+        })
+
+        this.sub =
+            this.route.params.subscribe((params: any) => {
+                this.id = params['id'];
+
+            });
     }
 
-    getRecipes() {
-
+    getSelectedRecipes(recipeNumber: string) {
+        this.router.navigateByUrl(`saved/${recipeNumber}`);
     }
+
+
 
 }

@@ -22,9 +22,7 @@ export class SetPreferencesComponent implements OnInit {
         script.type = "module";
         script.text = `showHideCheckBoxes()`
         document.body.appendChild(script);
-        //	this.friends = this.provider.getFriends();
-        //this.recipes = this.provider.getRecipes("fried rice")
-        //console.log(this.recipes)
+
     }
 
     updateSession(arr: any) {
@@ -46,7 +44,7 @@ export class SetPreferencesComponent implements OnInit {
         this.updateSession(arr)
 
         localStorage['isPrefSet'] = "true"
-        //setTimeout(function () { window.location.reload(); }, 10)
+        setTimeout(function () { window.location.reload(); }, 10)
         this.router.navigateByUrl('home', {
             state: { my_object: JSON.stringify(this.preferences) }
         });

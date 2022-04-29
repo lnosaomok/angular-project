@@ -71,7 +71,7 @@ export class SearchRecipesComponent implements OnInit {
 
                     transformedResult1.push(resultObj);
                 });
-                //console.log(transformedResult1)
+
                 this.data = transformedResult1;
 
                 localStorage.setItem('searchResults', JSON.stringify(this.data));
@@ -86,7 +86,6 @@ export class SearchRecipesComponent implements OnInit {
                 document.body.appendChild(script2);
 
 
-                //console.log(this.data);
 
             });
     }
@@ -101,21 +100,16 @@ export class SearchRecipesComponent implements OnInit {
             localStorage['saved'] = localStorage['saved']
         } else { localStorage['saved'] = JSON.stringify([{ sample: "" }]) }
 
-        //this.data = sample;
-        // console.log(JSON.parse(localStorage['userPreferences']));
+
         if (localStorage['userPreferences']) {
             this.userPreferences = JSON.parse(localStorage['userPreferences'])[0];
         }
 
         else if (history.state.my_object) {
             this.userPreferences = JSON.parse(history.state.my_object)
-            // updateSession(booksArr)
+
 
         }
-
-
-        //this.userPreferences = JSON.parse(history.state.my_object)
-        console.log(this.userPreferences)
 
 
     }
@@ -125,7 +119,6 @@ export class SearchRecipesComponent implements OnInit {
         var a = [];
         a = JSON.parse((localStorage['saved']));
         a.push(data);
-        console.log(a)
 
         localStorage.setItem('saved', JSON.stringify(a));
         let script = document.createElement("script");

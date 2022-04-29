@@ -1,1 +1,67 @@
-<h3>Saved Recipes</h3>
+<div *ngIf="savedRecipes.length == 1">
+    <h5 class="header center orange-text">No recipes saved yet! <a [routerLink]="['/home']">
+            Search Recipes
+        </a></h5>
+
+</div>
+
+
+
+
+<div class="outer-saved-container" *ngIf="savedRecipes.length > 1">
+
+
+    <div class="saved-recipes-list">
+        <div *ngFor="let item of savedRecipes; index as i">
+            <div class="recipe-item">
+                <a [routerLink]="['/saved',  i ]">
+                    {{item.label}}
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="saved-recipes-view">
+        <div class="col s12 m7">
+
+            <h4 class="header orange-text">{{savedRecipes[id].label}}</h4>
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="{{savedRecipes[id].image}}">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>Total Calories: {{savedRecipes[id].calories}}</p>
+                        <p class="grey-text text-darken-4">Yields: {{savedRecipes[id].yield}}
+                            Servings</p>
+                        <p>Cooking Instructions: <a href="{{savedRecipes[id].url}}">{{savedRecipes[id].source}}</a>
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="">
+
+
+                <h6 class="header orange-text">Ingredient List</h6>
+                <ul class="collection">
+
+
+                    <li *ngFor="let ingredientItem of savedRecipes[id].ingredientLines" class="collection-item">
+
+                        {{ingredientItem}}</li>
+
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

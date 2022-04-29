@@ -2,12 +2,12 @@
     <h1 class="header center orange-text">Set your dietary preferences</h1>
 
 
-    <form class="col s12 margin-little" #f="ngForm" (ngSubmit)="onSubmit(f)" validate>
+    <form class="col s12 margin-little" #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
         <div class="row">
             <div class="col s12">
                 Set your daily calorie limit/target:
                 <div class="input-field inline">
-                    <input id="calories" type="text" name="calories" ngModel required #calories="ngModel">
+                    <input id="calories" required type="text" name="calories" ngModel required #calories="ngModel">
                     <span class="helper-text" data-success="right">Daily Calorie limit/target</span>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                         <input type="checkbox" id="carbsMacroInd" name="carbsMacroInd" ngModel required
                             #carbsMacroInd="ngModel" />
                         <span>Carbs</span>
-                        <input type="text" id="carbsMacroAmount" name="carbsMacroAmount" ngModel required
+                        <input type="text" required id="carbsMacroAmount" name="carbsMacroAmount" ngModel required
                             #carbsMacroAmount="ngModel">
                         <label class="label_carbsMacro" for="carbsMacroAmount">Daily Target/Limit (grams)</label>
                     </label>
@@ -33,7 +33,7 @@
                         <input type="checkbox" id="fatMacroInd" name="fatMacroInd" ngModel required
                             #fatMacroInd="ngModel" />
                         <span>Fat</span>
-                        <input type="text" id="fatMacroAmount" name="fatMacroAmount" ngModel required
+                        <input type="text" required id="fatMacroAmount" name="fatMacroAmount" ngModel required
                             #fatMacroAmount="ngModel">
                         <label class="label_fatMacro" for="fatMacroAmount">Daily Target/Limit (grams)</label>
                     </label>
@@ -45,7 +45,7 @@
                         <input type="checkbox" id="proteinMacroInd" name="proteinMacroInd" ngModel required
                             #proteinMacroInd="ngModel" />
                         <span>Protein</span>
-                        <input type="text" id="proteinMacroAmount" name="proteinMacroAmount" ngModel required
+                        <input type="text" required id="proteinMacroAmount" name="proteinMacroAmount" ngModel required
                             #proteinMacroAmount="ngModel">
                         <label class="label_proteinMacro" for="proteinMacroAmount">Daily Target/Limit (grams)</label>
                     </label>
@@ -57,7 +57,7 @@
                         <input type="checkbox" id="sugarMacroInd" name="sugarMacroInd" ngModel required
                             #sugarMacroInd="ngModel" />
                         <span>Sugar</span>
-                        <input type="text" id="sugarMacroAmount" name="sugarMacroAmount" ngModel required
+                        <input type="text" required id="sugarMacroAmount" name="sugarMacroAmount" ngModel required
                             #sugarMacroAmount="ngModel">
                         <label class="label_sugarMacro" for="sugarMacroAmount">Daily Target/Limit (grams)</label>
                     </label>

@@ -6,7 +6,7 @@
 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-  <title>Starter Template - Materialize</title>
+  <title>Meal Finder</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -31,104 +31,12 @@
 
 
   <style>
-    nav {
-      font-family: 'Carter One', cursive;
-    }
 
-    nav i.material-icons {
-      font-size: 40px;
-    }
-
-    .input-container {
-      width: 350px;
-      height: auto;
-      background-color: #1e272e;
-      /*   margin: 20vh auto; */
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 4rem;
-      padding: 10px;
-    }
-
-    .search__box {
-      float: left;
-      width: 0;
-      height: 4rem;
-      /*   display: inline; */
-      background: none;
-      color: #f7f7f7;
-      font-size: 1.5rem;
-      border-radius: 2rem;
-      outline: none;
-      border: none;
-      position: relative;
-      opacity: 1;
-      transition: all .75s ease-in;
-      cursor: pointer;
-      /*   border: 2px solid tomato; */
-      /*   margin-top: 5px; */
-    }
-
-    /* .search__box:focus, .search__box:hover {
-  background-color: #f1f2f6;
-} */
-
-    .search__icon {
-      box-sizing: border-box;
-      float: right;
-      font-size: 2.5rem;
-      display: inline-block;
-      /*   justify-content: center;
-  align-items: center; */
-      margin-left: .8rem;
-      margin-top: 0;
-      cursor: pointer;
-      position: absolute;
-      color: #fa983a;
-      transition: all .25s ease-in;
-      padding: .7rem;
-      border-radius: 50%;
-    }
-
-    .input-container:hover>.search__box {
-      width: 85%;
-      padding: 0 1rem;
-    }
-
-    .input-container:hover>.search__icon {
-      background-color: #eee;
-    }
-
-    .show {
-      width: 85%;
-      border: 1px solid red;
-    }
   </style>
 </head>
 
 <body>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="/#/home" class="brand-logo">MEAL FINDER<i
-          class="large material-icons">restaurant_menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="/#/preferences">Preferences</a></li>
-        <li><a href="/#">My Recipes</a></li>
 
-      </ul>
-
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="/#/home">Home</a></li>
-        <li><a href="/#/preferences">Preferences</a></li>
-        <li><a href="/#">My Recipes</a></li>
-
-
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
   <div class="">
 
     <app-root></app-root>
@@ -144,109 +52,118 @@
       /////// check if user did not set any diet preferences at all
       let preferences = JSON.parse(localStorage['userPreferences'])[0];
       let data = JSON.parse(localStorage['searchResults']);
-      document.querySelectorAll(".modal-trigger").forEach((one, index) => {
-        one.addEventListener("click", function (e) {
-          let recipeYield = data[index].yield;
-          let recipeCalories = data[index].calories;
-          let recipeMacroFat = data[index].nutrients[0].quantity;
-          let recipeMacroCarbs = data[index].nutrients[1].quantity;
-          let recipeMacroSugar = data[index].nutrients[2].quantity;
-          let recipeMacroProtein = data[index].nutrients[3].quantity;
-
-          document.querySelectorAll(".inner1")[index].id = "chart1"
-          document.querySelectorAll(".legend")[index].id = "legend"
-          let arr = []
-          let colorsArr = [];
-          let valuesArr = []
-          //////////Build colums for nutrition analysis
-          if (preferences.fatMacroAmount !== "") {
-            recipeMacroFat = recipeMacroFat / recipeYield
-            let calc = recipeMacroFat / parseInt(preferences.fatMacroAmount)
-            calc = Math.round(calc * 100)
-            let innerArr1 = ['Fat', calc]
-            arr.push(innerArr1);
-            colorsArr.push("orange");
-            valuesArr.push(0)
-          }
-          if (preferences.carbsMacroAmount !== "") {
-            recipeMacroCarbs = recipeMacroCarbs / recipeYield
-            let calc = recipeMacroCarbs / parseInt(preferences.carbsMacroAmount)
-            calc = Math.round(calc * 100)
-            let innerArr2 = ['Carbs', calc]
-            arr.push(innerArr2)
-            colorsArr.push("indigo");
-            valuesArr.push(0)
-          }
-          if (preferences.proteinMacroAmount !== "") {
-            recipeMacroProtein = recipeMacroProtein / recipeYield
-            let calc = recipeMacroProtein / parseInt(preferences.proteinMacroAmount)
-            calc = Math.round(calc * 100)
-            let innerArr3 = ['Protein', calc]
-            arr.push(innerArr3);
-            colorsArr.push("violet");
-            valuesArr.push(0)
-          }
-          if (preferences.sugarMacroAmount !== "") {
-            recipeMacroSugar = recipeMacroSugar / recipeYield
-            let calc = recipeMacroSugar / parseInt(preferences.sugarMacroAmount)
-            calc = Math.round(calc)
-            let innerArr4 = ['Sugar', calc]
-            arr.push(innerArr4);
-            colorsArr.push("yellow");
-            valuesArr.push(0)
-          }
-          if (preferences.calories !== "") {
-            recipeCalories = recipeCalories / recipeYield
-            let calc = recipeCalories / parseInt(preferences.calories)
-            calc = Math.round(calc * 100)
-            let innerArr5 = ['Calories', calc]
-            arr.push(innerArr5);
-            colorsArr.push("green");
-            valuesArr.push(0)
-          }
-          ////////////Initialize billboard multiguage component
-          var chart1 = bb.generate({
-            data: {
-              columns: arr,
-              type: "gauge" // for ESM specify as: gauge()
-            },
-            legend: {
-              contents: {
-                bindto: "#legend",
-                template: "<span style='color:#fff;padding:10px;background-color:{=COLOR}'>{=TITLE}</span>"
-              }
-            },
-            gauge: {
-              type: "multi",
-              max: 100,
-              min: 0,
-              expand: true,
-              arcs: {
-                minWidth: 5
-              },
-              width: 110,
-            },
-            size: {
-              height: 250
-            },
-            bindto: "#chart1"
-          });
-        })
-      })
-
-
-      /////////////// reset ids when modal is closed to tear down recipe result analysis chart component
-      document.querySelectorAll(".modal-close").forEach((one, index) => {
-        one.addEventListener("click", function (e) {
-          document.querySelectorAll(".inner1")[index].id = ""
-          document.querySelectorAll(".legend")[index].id = ""
-        })
+      let noUserPreferences = preferences.fatMacroAmount === "" || preferences.carbsMacroAmount === "" || preferences.proteinMacroAmount === "" || preferences.sugarMacroAmount === "" || preferences.caloriesMacroAmount === ""
+      if (noUserPreferences) {
         document.querySelectorAll(".modal-trigger").forEach((one, index) => {
-          one.removeEventListener("click", function (e) {
-            document.querySelectorAll(".inner1")[index].innerHTML = ""
+          one.addEventListener("click", function (e) {
+            document.querySelectorAll(".inner1")[index].innerHTML = `<p>Not all dietary preferences have been set. Complete all fields dietrary prefences form to see nutrition analysis</p>`
           })
         })
-      })
+      } else {
+        document.querySelectorAll(".modal-trigger").forEach((one, index) => {
+          one.addEventListener("click", function (e) {
+            let recipeYield = data[index].yield;
+            let recipeCalories = data[index].calories;
+            let recipeMacroFat = data[index].nutrients[0].quantity;
+            let recipeMacroCarbs = data[index].nutrients[1].quantity;
+            let recipeMacroSugar = data[index].nutrients[2].quantity;
+            let recipeMacroProtein = data[index].nutrients[3].quantity;
+
+            document.querySelectorAll(".inner1")[index].id = "chart1"
+            document.querySelectorAll(".legend")[index].id = "legend"
+            let arr = []
+            let colorsArr = [];
+            let valuesArr = []
+            //////////Build colums for nutrition analysis
+            if (preferences.fatMacroAmount !== "") {
+              recipeMacroFat = recipeMacroFat / recipeYield
+              let calc = recipeMacroFat / parseInt(preferences.fatMacroAmount)
+              calc = Math.round(calc * 100)
+              let innerArr1 = ['Fat', calc]
+              arr.push(innerArr1);
+              colorsArr.push("orange");
+              valuesArr.push(0)
+            }
+            if (preferences.carbsMacroAmount !== "") {
+              recipeMacroCarbs = recipeMacroCarbs / recipeYield
+              let calc = recipeMacroCarbs / parseInt(preferences.carbsMacroAmount)
+              calc = Math.round(calc * 100)
+              let innerArr2 = ['Carbs', calc]
+              arr.push(innerArr2)
+              colorsArr.push("indigo");
+              valuesArr.push(0)
+            }
+            if (preferences.proteinMacroAmount !== "") {
+              recipeMacroProtein = recipeMacroProtein / recipeYield
+              let calc = recipeMacroProtein / parseInt(preferences.proteinMacroAmount)
+              calc = Math.round(calc * 100)
+              let innerArr3 = ['Protein', calc]
+              arr.push(innerArr3);
+              colorsArr.push("violet");
+              valuesArr.push(0)
+            }
+            if (preferences.sugarMacroAmount !== "") {
+              recipeMacroSugar = recipeMacroSugar / recipeYield
+              let calc = recipeMacroSugar / parseInt(preferences.sugarMacroAmount)
+              calc = Math.round(calc)
+              let innerArr4 = ['Sugar', calc]
+              arr.push(innerArr4);
+              colorsArr.push("yellow");
+              valuesArr.push(0)
+            }
+            if (preferences.calories !== "") {
+              recipeCalories = recipeCalories / recipeYield
+              let calc = recipeCalories / parseInt(preferences.calories)
+              calc = Math.round(calc * 100)
+              let innerArr5 = ['Calories', calc]
+              arr.push(innerArr5);
+              colorsArr.push("green");
+              valuesArr.push(0)
+            }
+            ////////////Initialize billboard multiguage component
+            var chart1 = bb.generate({
+              data: {
+                columns: arr,
+                type: "gauge" // for ESM specify as: gauge()
+              },
+              legend: {
+                contents: {
+                  bindto: "#legend",
+                  template: "<span style='color:#fff;padding:10px;background-color:{=COLOR}'>{=TITLE}</span>"
+                }
+              },
+              gauge: {
+                type: "multi",
+                max: 100,
+                min: 0,
+                expand: true,
+                arcs: {
+                  minWidth: 5
+                },
+                width: 110,
+              },
+              size: {
+                height: 250
+              },
+              bindto: "#chart1"
+            });
+          })
+        })
+
+
+        /////////////// reset ids when modal is closed to tear down recipe result analysis chart component
+        document.querySelectorAll(".modal-close").forEach((one, index) => {
+          one.addEventListener("click", function (e) {
+            document.querySelectorAll(".inner1")[index].id = ""
+            document.querySelectorAll(".legend")[index].id = ""
+          })
+          document.querySelectorAll(".modal-trigger").forEach((one, index) => {
+            one.removeEventListener("click", function (e) {
+              document.querySelectorAll(".inner1")[index].innerHTML = ""
+            })
+          })
+        })
+      }
     }
 
 
@@ -324,23 +241,16 @@
       $(function () {
 
         $('.sidenav').sidenav();
-        // document.addEventListener('DOMContentLoaded', function () {
-        //   var elems = document.querySelectorAll('.dropdown-trigger');
-        //   var instances = M.Dropdown.init(elems, options);
-        // });
 
-        // document.addEventListener('DOMContentLoaded', function () {
-        //   var elems = document.querySelectorAll('.modal');
-        //   var instances = M.Modal.init(elems, options);
-        // });
-        // Or with jQuery
 
         $('.dropdown-trigger').dropdown();
 
         $('.modal').modal();
+        $('select').formSelect();
 
 
-      }); // end of document ready
+
+      });
     })(jQuery); 
   </script>
 </body>
